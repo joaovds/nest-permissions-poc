@@ -1,10 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
-import { PgService } from '@/shared/database/pg/pg.service';
+import { DATABASE_SERVICE } from '@/shared/database/tokens';
+import { DatabaseInterface } from '@/shared/database/interfaces';
 
 @Injectable()
 export class PermissionsService {
-  constructor(private readonly pg: PgService) {}
+  constructor(
+    @Inject(DATABASE_SERVICE) private readonly pg: DatabaseInterface,
+  ) {}
 
   async testDatabase() {
     const users = await this.pg
