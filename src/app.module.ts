@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
+import { PgModule } from '@/shared/database/pg/pg.module';
+import { EnvModule } from '@/shared/env/env.module';
+import { PermissionsModule } from './modules/permissions/permissions.module';
 
 @Module({
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [PgModule, EnvModule, PermissionsModule],
 })
 export class AppModule {}
