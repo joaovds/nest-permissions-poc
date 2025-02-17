@@ -26,7 +26,7 @@ WITH user_specific_permission AS (
 	FROM entity_permissions ep
 	JOIN permissions per ON ep.permission_id = per.id
 	WHERE ep.user_id = $1
-		AND per.name = $2
+		AND per.id = $2
 		AND ep.entity_id = $3
 		AND ep.is_denied = false
 ),
@@ -35,7 +35,7 @@ user_denied_permission AS (
 	FROM entity_permissions ep
 	JOIN permissions per ON ep.permission_id = per.id
 	WHERE ep.user_id = $1
-		AND per.name = $2
+		AND per.id = $2
 		AND ep.entity_id = $3
 		AND ep.is_denied = true
 ),
@@ -46,7 +46,7 @@ user_global_permission AS (
 	JOIN role_permissions rp ON rol.id = rp.role_id
 	JOIN permissions per ON rp.permission_id = per.id
 	WHERE usr.id = $1
-	  AND per.name = $2
+	  AND per.id = $2
 )
 SELECT 
 	(NOT EXISTS (SELECT * FROM user_denied_permission))
