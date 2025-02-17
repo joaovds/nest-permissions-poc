@@ -7,7 +7,9 @@ export class PermissionsService {
   constructor(private readonly pg: PgService) {}
 
   async testDatabase() {
-    const users = await this.pg.query('select * from users where id = $1', [4]);
+    const users = await this.pg
+      .query('select * from users where id = $1', [4])
+      .getOne();
 
     return users;
   }
