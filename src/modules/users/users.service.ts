@@ -4,7 +4,7 @@ import { DATABASE_SERVICE } from '@/shared/database/tokens';
 import { DatabaseInterface } from '@/shared/database/interfaces';
 
 @Injectable()
-export class PermissionsService {
+export class UsersService {
   constructor(
     @Inject(DATABASE_SERVICE) private readonly pg: DatabaseInterface,
   ) {}

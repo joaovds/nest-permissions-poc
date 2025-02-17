@@ -1,0 +1,1 @@
+export const PERMISSIONS_METADATA_KEY = Symbol('PERMISSIONS_TOKEN');
